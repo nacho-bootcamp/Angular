@@ -1,0 +1,10 @@
+
+<!-- si no hay producto muestrame el segundo div -->
+<div *ngIf="product">
+  <h1>{{product.title}}</h1>
+  <p>{{product.price}}</p>
+  <img [src]="product.images[0]" alt="">
+</div>
+<div *ngIf="!product">
+  Producto no existente
+</div>
