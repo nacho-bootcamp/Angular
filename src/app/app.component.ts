@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Product } from './models/product.model';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'PrimerProyecto';
-  http = inject(HttpClientModule)
+  http = inject(HttpClient)
+  products: Product[] = []
+
+
+  ngOnInit() {
+    this.http.get<Product[]>("https://api.escuelajs.co/api/v1/products")
+      .subscribe((data) => {
+        this.products = data
+      })
+  }
 }
